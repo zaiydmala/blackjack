@@ -20,11 +20,11 @@ function getRandomCard() {
 
 start.addEventListener('click', startGame);
 function startGame() {
+    start.style.display = 'none'; //removes start button once the game starts
     isAlive = true;
     let firstCard = getRandomCard();
-    let secondCard = getRandomCard();
-    cards = [firstCard, secondCard];
-    sum = cards.reduce((sum, card) => sum + card);
+    cards = [firstCard];
+    sum = cards.reduce((sum, card) => sum + card); //array.reduce takes each [i] and does an operation on it.
     playRound(); //deals a new round
 }
 /* Logic to deal a round */
@@ -45,6 +45,10 @@ function playRound() {
         isAlive = false;
     }
     messageEl.textContent = message;
+    /* If player wins or loses, then they cannot draw a new card */
+    if(!hasBlackjack && !isAlive || hasBlackjack) {
+        newCard.style.display = "none";
+    }
 }
 
 /* Draws a new card */
@@ -55,7 +59,6 @@ function drawCard() {
     sum += card; //adds card to the sum variable
     cards.push(card);
     playRound();   
-    }
-    
+    }  
 }
 
