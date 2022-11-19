@@ -1,10 +1,8 @@
-//let firstCard = 10;
-//let secondCard = 5;
-let cards = [10, 5];
-let sum = cards.reduce((sum, card) => sum + card, 0); //adds the array elements ie. adds the cards
-let hasBlackjack = false;
-let isAlive = true;
-let message = "";
+let cards = []; //cards are stores in the array
+let sum = 0; //adds the array elements ie. adds the cards //cards.reduce((sum, card) => sum + card, 0); 
+let hasBlackjack = false;//checks if the player has won
+let isAlive = false;//check whether the player is still in game or they lost
+let message = "";//message that is shown to user, empty as it will be edited according to game state
 let messageEl = document.querySelector('.message-el');
 let cardEl = document.querySelector('.card-el');
 let sumEl = document.querySelector('.sum-el');
@@ -12,14 +10,29 @@ const start = document.querySelector('.start');
 const newCard = document.querySelector('.new-card');
 
 
+/* Generates a random card */
+function getRandomCard() {
+    let randomCard = Math.floor(Math.random() * 13) + 1; 
+    if(randomCard === 1) { return 11; }
+    else if(randomCard > 10) { return 10; }
+    else { return randomCard; }
+}
+
 start.addEventListener('click', startGame);
-function startGame() { playRound() }
+function startGame() {
+    isAlive = true;
+    let firstCard = getRandomCard();
+    let secondCard = getRandomCard();
+    cards = [firstCard, secondCard];
+    sum = cards.reduce((sum, card) => sum + card);
+    playRound(); //deals a new round
+}
+/* Logic to deal a round */
 function playRound() {
     cardEl.textContent = "Cards: "
     for(i = 0; i < cards.length; i++) {
         cardEl.textContent += cards[i] + " ";
     }
-    //cardEl.textContent = `Cards: ${cards[0]}  ${cards[1]} ` + cards[3];
     sumEl.textContent = `Sum: ${sum}`;
 
     if(sum <= 20) {
@@ -34,11 +47,15 @@ function playRound() {
     messageEl.textContent = message;
 }
 
+/* Draws a new card */
 newCard.addEventListener('click', drawCard);
 function drawCard() {
-    const card = 6;
+    if(isAlive === true && hasBlackjack === false) { 
+    const card = getRandomCard();
     sum += card; //adds card to the sum variable
     cards.push(card);
-    playRound();
+    playRound();   
+    }
+    
 }
 
