@@ -9,7 +9,6 @@ let sumEl = document.querySelector('.sum-el');
 const start = document.querySelector('.start');
 const newCard = document.querySelector('.new-card');
 
-
 /* Generates a random card */
 function getRandomCard() {
     let randomCard = Math.floor(Math.random() * 13) + 1; 
@@ -34,14 +33,13 @@ function playRound() {
         cardEl.textContent += cards[i] + " ";
     }
     sumEl.textContent = `Sum: ${sum}`;
-
     if(sum <= 20) {
-        message = "do you wish to draw a new card? 🙂";
+        message = "DO YOU WISH TO DRAW A CARD? 🙂";
     } else if(sum === 21) {
-        message = "you win 🥳";
+        message = "YEAAYYY YOU WIN 🥳";
         hasBlackjack = true;
     } else {
-        message = "you're out of the game 😭";
+        message = "YOU'RE OUT OF THE GAME 😭";
         isAlive = false;
     }
     messageEl.textContent = message;
@@ -50,7 +48,6 @@ function playRound() {
         newCard.style.display = "none";
     }
 }
-
 /* Draws a new card */
 newCard.addEventListener('click', drawCard);
 function drawCard() {

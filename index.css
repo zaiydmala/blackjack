@@ -2,24 +2,27 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-image: url("images/table.jpg");
     background-size: cover;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: white;
     font-weight: bold;
 }
 
 h1 {
+    font-size: 5vw;
     color: goldenrod;
 }
-
-#update {
-
+p {
+    font-size: 1.5vw;
 }
-
 button {
-    width: 150px;
+    width: 200px;
+    font-weight: bold;
+    font-size: 1vw;
     background-color: goldenrod;
     color: #016f32;
-    padding: 5px 0px;
+    padding: 20px 5px;
     margin: 10px auto;
     border: none;
     border-radius: 2px;
