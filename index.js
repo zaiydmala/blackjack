@@ -5,14 +5,19 @@ let hasBlackjack = false;
 let isAlive = true;
 let message = "";
 
-if(sum <= 20) {
-    message = "do you wish to draw a new card? 🙂";
-} else if(sum === 21) {
-    message = "you win 🥳";
-    hasBlackjack = true;
-} else {
-    message = "you're out of the game 😭";
-    isAlive = false;
+const start = document.querySelector('.start');
+start.addEventListener('click', startGame());
+
+function startGame() {
+    if(sum <= 20) {
+        message = "do you wish to draw a new card? 🙂";
+    } else if(sum === 21) {
+        message = "you win 🥳";
+        hasBlackjack = true;
+    } else {
+        message = "you're out of the game 😭";
+        isAlive = false;
+    }
 }
 
 
